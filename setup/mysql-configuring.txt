@@ -1,0 +1,17 @@
+Steps to get mysql on the SolarSPELL:
+1. Add the following lines to /etc/resolv.conf:
+   nameserver 8.8.8.8
+   nameserver 8.8.4.4
+
+2. Replace the file /etc/apt/sources.list on the pi with the one in this directory.  It includes a new link to a 
+working mirror site as of 2/24/18.
+
+3. Connect the SolarSPELL to the internet.  In order to do this, I had to disconnect my wifi and plug the SolarSPELL 
+directly into my modem using an ethernet cable.
+
+4. Run the following:
+   sudo apt-get update
+   sudo apt-get upgrade
+   sudo apt-get install mysql-server mysql-client
+
+5. Set up mysql root user password - I used raspberry for consistency.
