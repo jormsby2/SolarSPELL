@@ -15,3 +15,18 @@ directly into my modem using an ethernet cable.
    sudo apt-get install mysql-server mysql-client
 
 5. Set up mysql root user password - I used raspberry for consistency.
+
+Once mysql is set up on the pi:
+1. Replace the my.cnf file in /etc/mysql directory with the one in this directory.  
+
+2. Place the setupdb.sql and testdbinfo.txt files in the /var/log/apache2 directory.  The setupdb.sql file is a small script to create a table and then pull data from the testdbinfo.txt file to create records.
+
+3. Run the following commands:
+   mysql -uroot -praspberry -e "create database UserData"
+   mysql -uroot -praspberry < /var/log/apache2/setupdb.sql
+   
+4. You can test to see if the database and table is properly created and populated by doing the following:
+   mysql -uroot -p UserData
+      enter password raspberry when prompted & you will get the mysql prompt
+   select * from UserInfoLog;
+      you should see 6 results
