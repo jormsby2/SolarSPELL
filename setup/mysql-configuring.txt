@@ -13,3 +13,5 @@ directly into my modem using an ethernet cable.
    sudo apt-get update
    sudo apt-get upgrade
    sudo apt-get install mysql-server mysql-client
+
+5. Set up mysql root user password - I used raspberry for consistency.
