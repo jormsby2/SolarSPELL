@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pi Chart of User Access</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart()
+        {
+            var data = google.visualization.arrayToDataTable([
+                ['Category', 'Times Accessed'],
+                ['Environment', 110],
+                ['Health and Safety', 12],
+                ['Language Arts', 17],
+                ['Local Topics', 24],
+                ['Math', 35],
+                ['Science', 24]
+            ]);
+			
+            var options = {
+                title: 'Percentage of Access to Each Category',
+                pieHole: 0.1
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+<br /><br />
+<div style="width:100%">
+    <div id="piechart" style="width: 100%; height: 500px;"></div>
+</div>
+</body>
+</html>
