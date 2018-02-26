@@ -1,10 +1,9 @@
+<?php
 /*
  * This page formats the log data into a pi chart to show user access by category. I am currently using dummy data
  * until we figure out the database and logging.
-*/
-<?php
-/*
- * Below is an example of what getting the data will look like once we have the database and logging figured out
+
+Below is an example of what getting the data will look like once we have the database and logging figured out
 $conn = mysqli_connect(connection to my sql db);
 $query = "SELECT category, count(*) as number FROM tbl_logs GROUP BY category";
 $result = mysqli_query($conn, $query);
