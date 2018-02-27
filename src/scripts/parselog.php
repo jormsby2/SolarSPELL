@@ -23,6 +23,33 @@ function process_line($line) {
 		//$is_mobile_device = $ua_arr['ismobiledevice'];
 		//$is_tablet = $ua_arr['istablet'];
 
+		// Upload Data
+		$servername = "localhost";
+		$username = "root";
+		$password = "raspberry";
+		$dbname = "UserData";
+
+		// Create connection
+		$conn = new mysqli($servername, $username, $password, $dbname);
+		
+		// Check connection
+		if ($conn->connect_error) {
+		    die("Connection failed: " . $conn->connect_error);
+		} 
+
+		$sql = "INSERT INTO UserData.UserDataInfo (content_path, user_agent, main_category, file_name)
+		VALUES (" . $content_path . ", " . $user_agent . "," . $main_category . "," . $file_name . ")";
+
+		if ($conn->query($sql) === TRUE) {
+		    echo "New record created successfully";
+		} else {
+		    echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
+		$conn->close();
+
+		// End Upload
+
 		//String keys
 		return ["category"=>$main_category,
 			"file"=>$file_name,
