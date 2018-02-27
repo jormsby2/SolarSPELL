@@ -1,10 +1,11 @@
 <?php
-$host = 'localhost';
+$connectionstring = 'mysql:host=localhost;dbname=UserData';
 $user = 'root';
 $passwd = 'raspberry';
-$dbname = 'UserData';
-$db = new mysqli($host, $user, $passwd, $dbname);
-if($db->connect_error){
-	die("Can't connect to UserData:" . $db->connect_error);
+
+try{
+	$dbh = new PDO($connectionstring, $user, $passwd);
+}catch(PDOException $e){
+	die();
 }
 ?>
