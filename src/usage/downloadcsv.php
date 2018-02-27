@@ -7,6 +7,8 @@
 		try{
 			$dbc = new PDO($connectionstring, $user, $passwd);
 		}catch(PDOException $e){
+			// print error message.
+			echo($e->getMessage());
 			die();
 		}
 		$fname = "usagedata-" . date('m-d-Y') . "csv";

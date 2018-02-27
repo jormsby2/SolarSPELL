@@ -30,3 +30,7 @@ Once mysql is set up on the pi:
       enter password raspberry when prompted & you will get the mysql prompt
    select * from UserInfoLog;
       you should see 6 results
+
+5. To ensure downloadcsv.php has all proper dependecies. Run the following:
+	sudo apt-get install php-mysql
+	sudo service apache2 restart
