@@ -30,23 +30,22 @@ function process_line($line) {
 		$dbname = "UserData";
 
 		// Create connection
-		$conn = new mysqli($servername, $username, $password, $dbname);
+		$conn = new PDO("mysql:host=localhost;dbname=". $dbname, $username, $password);
 		
-		// Check connection
-		if ($conn->connect_error) {
-		    die("Connection failed: " . $conn->connect_error);
-		} 
+		$statement = $conn->prepare("INSERT INTO UserDataInfo (content_path, user_agent, main_category, file_name)
+		VALUES(:category, :file, :browser, :device, :os)");
 
-		$sql = "INSERT INTO UserData.UserDataInfo (content_path, user_agent, main_category, file_name)
-		VALUES (" . $content_path . ", " . $user_agent . "," . $main_category . "," . $file_name . ")";
+		$statement->execute(array(
+			"category"=>$main_category,
+			"file"=>$file_name,
+			"browser"=>$browser,
+			"device"=>$device_type,
+			"os"=>$os
+		));
 
-		if ($conn->query($sql) === TRUE) {
-		    echo "New record created successfully";
-		} else {
-		    echo "Error: " . $sql . "<br>" . $conn->error;
-		}
-
-		$conn->close();
+		// close connection
+		$statement = null;
+		$conn = null;
 
 		// End Upload
 
