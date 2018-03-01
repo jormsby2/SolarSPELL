@@ -1,5 +1,68 @@
 <?php
 define("LOG_PATH", "/var/log/apache2/access1.log");
+define("DATA_PATH", "/var/log/apache2/access2.log");
+
+function clear_log($source_path) {
+	$dest_path = $source_path . ".bak";
+
+	copy($source_path, $dest_path);
+
+	//cannot remove file or apache logger will lose pointer to it
+	file_put_contents($source_path, "");
+	//$handle = fopen($source_path, "w");
+	//fclose($handle);
+
+	return $dest_path;
+}
+
+function remove_duplicates($source_path, $dest_path) {
+	/*
+	//entire file at once
+	$lines = array_unique(file($source_path));
+	file_put_contents($dest_path, implode($lines));
+	*/
+
+	/*
+	//line by line (large files)
+	$handle = fopen($source_path, "r");
+	if ($handle) {
+		$arr = [];
+
+		while(($line = fgets($handle)) !== false) {
+			array_push($arr, $line);
+		}
+
+		fclose($handle);
+		$lines = array_unique($arr);
+		$fp = fopen($dest_path, "w");
+
+		foreach ($lines as $line) {
+			fwrite($fp, $line);
+		}
+
+		fclose($fp);
+	}
+	*/
+
+	//linux command
+	/*
+	$output = shell_exec("sort -u " . $source_path);
+	file_put_contents($dest_path, $output);
+	*/
+
+	$lines = [];
+	exec("sort -u " . $source_path, $lines);
+	$file = fopen($dest_path, "w");
+	//file_put_contents($dest_path, implode("\n", $lines));
+
+	foreach ($lines as $line) {
+		fwrite($file, $line . "\n");
+	}
+
+	fclose($file);
+
+	return $dest_path;
+}
 
 function process_line($line) {
 	$tokens = explode(" ", $line, 3);
@@ -41,22 +104,27 @@ function process_line($line) {
 	}
 }
 
-function get_data() {
-	$handle = fopen(LOG_PATH, "r");
+function get_data($source_path) {
+	$handle = fopen($source_path, "r");
 
 	if ($handle) {
 		$data = [];
+
 		while(($line = fgets($handle)) !== false) {
-			array_push($data, process_line($line));
+			if (trim($line) !== "") {
+				array_push($data, process_line($line));
+			}
 		}
 
 		fclose($handle);
-    
+
 		return $data;
 	}
 }
 
-$data = get_data();
+$temp_log_path = clear_log(LOG_PATH);
+$data_path = remove_duplicates($temp_log_path, DATA_PATH);
+$data = get_data($data_path);
 
 if ($data) {
 	print_r($data);
