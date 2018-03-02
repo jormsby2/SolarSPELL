@@ -6,7 +6,7 @@ define("DATA_PATH", "/var/log/apache2/access2.log");
 //define("TMP_LOG_DIR_PATH", "/home/pi/logdata/");
 //define("DATA_PATH", "/home/pi/logdata/access2.log");
 
-function clear_log($source_path, $dest_dir_path) {
+function clear_log($source_path, $dest_dir_path = NULL) {
 	if (isset($dest_dir_path)) {
 		$dest_path = $dest_dir_path . basename($source_path) . ".bak";
 	} else {
