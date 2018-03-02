@@ -1,9 +1,14 @@
 <?php
-define("LOG_PATH", "/var/log/apache2/access1.log");
-define("DATA_PATH", "/var/log/apache2/access2.log");
+define("LOG_PATH", "/home/pi/logdata/access1.log");
+define("TMP_LOG_PATH", "/home/pi/logdata/");
+define("DATA_PATH", "/home/pi/logdata/access2.log");
 
-function clear_log($source_path) {
-	$dest_path = $source_path . ".bak";
+function clear_log($source_path, $dest_path) {
+	if (isset($dest_path)) {
+		$dest_path = $dest_path . basename($source_path) . ".bak";
+	} else {
+		$dest_path = $source_path . ".bak";
+	}
 
 	copy($source_path, $dest_path);
 
@@ -122,11 +127,11 @@ function get_data($source_path) {
 	}
 }
 
-$temp_log_path = clear_log(LOG_PATH);
+$temp_log_path = clear_log(LOG_PATH, TMP_LOG_PATH);
 $data_path = remove_duplicates($temp_log_path, DATA_PATH);
 $data = get_data($data_path);
 
-if ($data) {
+if (isset($data)) {
 	print_r($data);
 }
 ?>
