@@ -39,11 +39,11 @@ $db = new MyDB();
 		return([
 			<?php
 			$result = $db->query($query);
-			$row = $result->fetchArray();
+			$row = $result->fetchArray(SQLITE3_ASSOC);
 
 			while($row != FALSE) {
 				echo "['" . $row["main_category"] . "', " . $row["number"] . "],";
-				$row = $result->fetchArray();
+				$row = $result->fetchArray(SQLITE3_ASSOC);
 			}
 			?>
 		]);

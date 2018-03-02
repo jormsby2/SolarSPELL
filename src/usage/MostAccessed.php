@@ -2,15 +2,26 @@
 /*
 * This page formats the log data into a formatted table to show most accessed files. I am currently using dummy data
 * until we figure out the database and logging.
-
-Below is an example of what getting the data will look like once we have the database and logging figured out
-$conn = mysqli_connect(connection to my sql db);
-$query = "SELECT fileName, Category, count(*) as Number
-    FROM tableName
-    GROUP BY fileName
-    ORDER BY count(*) DESC";
-$result = mysqli_query($conn, $query);
 */
+
+//Below is an example of what getting the data will look like once we have the database and logging figured out
+//$conn = mysqli_connect(connection to my sql db);
+define("DB_PATH", "/var/www/db/UserData.db");
+$query = "SELECT file_name, main_category, count(*) as Number
+    FROM UserLogInfo
+    GROUP BY file_name
+    ORDER BY count(*) DESC";
+//$result = mysqli_query($conn, $query);
+
+class MyDB extends SQLite3
+{
+	function __construct() {
+		$this->open(DB_PATH);
+	}
+}
+
+$db = new MyDB();
+$result = $db->query($query);
 
 function build_table($tableArray){
     // start table, use bootstrap table css and include grid lines
@@ -39,11 +50,20 @@ function build_table($tableArray){
 
 // below is dummy data that SHOULD be coming from $result instead. Once we have the database connection string worked out
 // we can create the array from the database result
-$tableArray = array(
+/*$tableArray = array(
     array('File'=>'Maya.svg', 'Category'=>'Math', 'Times Accessed'=>'5'),
     array('File'=>'Fishing_down_the_food_web.png', 'Category'=>'Science', 'Times Accessed'=>'2'),
     array('File'=>'Inscription_displaying_apices_(from_the_shrine_of_the_Augustales_at_Herculaneum).jpg', 'Category'=>'Language Arts', 'Times Accessed'=>'1')
 );
+*/
+
+$tableArray = [];
+$row = $result->fetchArray(SQLITE3_ASSOC);
+
+while($row != FALSE) {
+	array_push($tableArray, ['File'=>$row["file_name"], 'Category'=>$row["main_category"], 'Times Accessed'=>$row["Number"]]);
+	$row = $result->fetchArray(SQLITE3_ASSOC);
+}
 ?>
 
     <script src="../js/bootstrap.js"></script>
