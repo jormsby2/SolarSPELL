@@ -3,9 +3,9 @@ define("LOG_PATH", "/home/pi/logdata/access1.log");
 define("TMP_LOG_PATH", "/home/pi/logdata/");
 define("DATA_PATH", "/home/pi/logdata/access2.log");
 
-function clear_log($source_path, $dest_path) {
-	if (isset($dest_path)) {
-		$dest_path = $dest_path . basename($source_path) . ".bak";
+function clear_log($source_path, $dest_dir_path) {
+	if (isset($dest_dir_path)) {
+		$dest_path = $dest_dir_path . basename($source_path) . ".bak";
 	} else {
 		$dest_path = $source_path . ".bak";
 	}
