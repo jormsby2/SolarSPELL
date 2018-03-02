@@ -58,11 +58,9 @@ function build_table($tableArray){
 */
 
 $tableArray = [];
-$row = $result->fetchArray(SQLITE3_ASSOC);
 
-while($row != FALSE) {
+while($row = $result->fetchArray(SQLITE3_ASSOC)) {
 	array_push($tableArray, ['File'=>$row["file_name"], 'Category'=>$row["main_category"], 'Times Accessed'=>$row["Number"]]);
-	$row = $result->fetchArray(SQLITE3_ASSOC);
 }
 ?>
 
