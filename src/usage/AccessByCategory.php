@@ -26,10 +26,10 @@ $db = new MyDB();
 </head>
 <body>
 <br /><br />
-<div style="width:900px;">
+<div>
     <h3 align="center">Pi Chart of User Access</h3>
     <br />
-    <div id="piechart-container" style="width: 900px; height: 500px;">
+    <div id="piechart-container" style="margin: auto; width: 400px; height: 400px">
         <canvas id="piechart" style="width: 100%; height: 100%;"></canvas>
     </div>
 </div>

@@ -19,8 +19,10 @@
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
+    <link href="jquery.dataTables.min.css" rel="stylesheet">
+
     <!-- Custom styles for this template -->
-    <link href="../css/starter-template.css" rel="stylesheet">
+    <link href="../css/starter-template.css" rel="stylesheet">    
 
     <script src="../js/ie-emulation-modes-warning.js"></script>
 </head>
@@ -41,35 +43,29 @@
         <h4>Please review the usage data below and download CSV usage file.</h4>
     </div>
 
-    <div class="container">
+    <!--<div class="container">
 
         <div class="row">
             <div class="col-xs-6 col-lg-4">
                 <h3>ENVIRONMENT</h3>
-                <!-- placeholder for ENVIRONMENT graphic content -->
             </div>
             <div class="col-xs-6 col-lg-4">
                 <h3>HEALTH AND SAFETY</h3>
-                <!-- placeholder for HEALTH AND SAFETY graphic content -->
             </div>
             <div class="col-xs-6 col-lg-4">
                 <h3>LANGUAGE ARTS</h3>
-                <!-- placeholder for LANGUAGE ARTS graphic content -->
             </div>
             <div class="col-xs-6 col-lg-4">
                 <h3>LOCAL TOPICS</h3>
-                <!-- placeholder for LOCAL TOPICS graphic content -->
             </div>
             <div class="col-xs-6 col-lg-4">
                 <h3>MATH</h3>
-                <!-- placeholder for MATH graphic content -->
             </div>
             <div class="col-xs-6 col-lg-4">
                 <h3>SCIENCE</h3>
-                <!-- placeholder for SCIENCE graphic content -->
             </div>
         </div>
-    </div>
+    </div>-->
 
     <footer class="panel-footer">
         <div class="container">
@@ -97,15 +93,27 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
-    <script type="text/javascript">
-	/*window.addEventListener('click', function() {
-		var target = event.target;
-		if (target === ""){}
-	});*/	
 
-	document.getElementById("category-btn").addEventListener('click', function() {
-		//$("#chart-container").load("AccessByCategory.php");
-		
+    <script src="jquery.dataTables.min.js"></script>
+    <script type="text/javascript">
+  function make_table() {
+    $.ajax({
+			async: true,
+			dataType: "html",
+			url: "MostAccessed.php",
+			success: function(data) {
+				$("#chart-container").html(data);
+				$("#main-table").DataTable({
+					"scrollY": "250px",
+					"scrollCollapse": true,
+					"paging": false,
+					"order": [[2, "desc"]]
+				});
+			}
+		});
+  }
+  
+  function make_pie_chart() {
 		$.ajax({
 			async: true,
 			dataType: "html",
@@ -114,19 +122,23 @@
 				$("#chart-container").html(data);
 			}
 		});
+  }
+  
+  make_table();
+  
+	/*window.addEventListener('click', function() {
+		var target = event.target;
+		if (target === ""){}
+	});*/	
+
+	document.getElementById("category-btn").addEventListener('click', function() {
+		//$("#chart-container").load("AccessByCategory.php");
+		make_pie_chart();
 	});
 
 	document.getElementById("fileaccess-btn").addEventListener('click', function() {
 		//$("#chart-container").load("MostAccessed.php");
-		
-		$.ajax({
-			async: true,
-			dataType: "html",
-			url: "MostAccessed.php",
-			success: function(data) {
-				$("#chart-container").html(data);
-			}
-		});
+		make_table();
 	});
     </script>
 </body>

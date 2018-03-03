@@ -25,15 +25,18 @@ $result = $db->query($query);
 
 function build_table($tableArray){
     // start table, use bootstrap table css and include grid lines
-    $html = '<table class="table" border="1">';
+    $html = '<table id="main-table" class="stripe hover row-border" spacing="0" width="100%">';
     // header row
+    $html .= '<thead>';
     $html .= '<tr>';
     foreach($tableArray[0] as $key=>$value){
         $html .= '<th>' . htmlspecialchars($key) . '</th>';
     }
     $html .= '</tr>';
+    $html .= '</thead>';
 
     // data rows
+    $html .= '<tbody>';
     foreach( $tableArray as $key=>$value){
         $html .= '<tr>';
         foreach($value as $key2=>$value2){
@@ -41,6 +44,8 @@ function build_table($tableArray){
         }
         $html .= '</tr>';
     }
+
+    $html .= '</tbody>';
 
     // finish table and return it
 
