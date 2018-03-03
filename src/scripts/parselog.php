@@ -1,10 +1,15 @@
 <?php
+define("PARSE_MIN_SIZE", 1000000); //bytes
+define("ENFORCE_MIN_SIZE", FALSE);
+
 define("LOG_PATH", "/var/log/apache2/access1.log");
 define("TMP_LOG_DIR_PATH", "/var/log/apache2/");
 define("DATA_PATH", "/var/log/apache2/access2.log");
+
 //define("LOG_PATH", "/home/pi/logdata/access1.log");
 //define("TMP_LOG_DIR_PATH", "/home/pi/logdata/");
 //define("DATA_PATH", "/home/pi/logdata/access2.log");
+
 define("DB_PATH", "/var/www/db/UserData.db");
 
 class MyDB extends SQLite3
@@ -138,27 +143,29 @@ function get_data($source_path) {
 	}
 }
 
-$temp_log_path = clear_log(LOG_PATH);
-$data_path = remove_duplicates($temp_log_path, DATA_PATH);
-$data = get_data($data_path);
+if (!ENFORCE_MIN_SIZE || (filesize(LOG_PATH) > PARSE_MIN_SIZE)) {
+	$temp_log_path = clear_log(LOG_PATH);
+	$data_path = remove_duplicates($temp_log_path, DATA_PATH);
+	$data = get_data($data_path);
 
-if (!empty($data)) {
-	//print_r($data);
-	$db = new MyDB();
+	if (!empty($data)) {
+		//print_r($data);
+		$db = new MyDB();
 
-	$db->exec("BEGIN;");
+		$db->exec("BEGIN;");
 
-	foreach($data as $entry) {
-		$statement = $db->prepare("INSERT INTO UserLogInfo (main_category, file_name, browser, device_type, os) VALUES (:category, :file, :browser, :device, :os)");
-		$statement->bindValue(":category", $entry["category"]);
-		$statement->bindValue(":file", $entry["file"]);
-		$statement->bindValue(":browser", $entry["browser"]);
-		$statement->bindValue(":device", $entry["device"]);
-		$statement->bindValue(":os", $entry["os"]);
-		$result = $statement->execute()->finalize();
-		//$result = $statement->execute();
+		foreach($data as $entry) {
+			$statement = $db->prepare("INSERT INTO UserLogInfo (main_category, file_name, browser, device_type, os) VALUES (:category, :file, :browser, :device, :os)");
+			$statement->bindValue(":category", $entry["category"]);
+			$statement->bindValue(":file", $entry["file"]);
+			$statement->bindValue(":browser", $entry["browser"]);
+			$statement->bindValue(":device", $entry["device"]);
+			$statement->bindValue(":os", $entry["os"]);
+			$result = $statement->execute()->finalize();
+			//$result = $statement->execute();
+		}
+
+		$db->exec("COMMIT;");
 	}
-
-	$db->exec("COMMIT;");
 }
 ?>
