@@ -78,9 +78,14 @@
             </form>
             <br />
             <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
-                <a href="AccessByCategory.php" class="btn btn-secondary btn-success">Category Usage</a>
-                <a href="MostAccessed.php" class="btn btn-secondary btn-success">Most Accessed</a>
-            </div>
+                <button id="category-btn" class="btn btn-secondary btn-success">Category Usage</button>
+                <button id="fileaccess-btn" class="btn btn-secondary btn-success">Most Accessed</button>
+		<!--<a href="AccessByCategory.php" class="btn btn-secondary btn-success">Category Usage</a>-->
+		<!--<a href="MostAccessed.php" class="btn btn-secondary btn-success">Most Accessed</a>-->
+	    </div>
+	    <br />
+	    <div id="chart-container" style="background-color: #fff;">
+	    </div>
         </div>
     </footer>
 
@@ -92,6 +97,38 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../js/ie10-viewport-bug-workaround.js"></script>
+    <script type="text/javascript">
+	/*window.addEventListener('click', function() {
+		var target = event.target;
+		if (target === ""){}
+	});*/	
+
+	document.getElementById("category-btn").addEventListener('click', function() {
+		//$("#chart-container").load("AccessByCategory.php");
+		
+		$.ajax({
+			async: true,
+			dataType: "html",
+			url: "AccessByCategory.php",
+			success: function(data) {
+				$("#chart-container").html(data);
+			}
+		});
+	});
+
+	document.getElementById("fileaccess-btn").addEventListener('click', function() {
+		//$("#chart-container").load("MostAccessed.php");
+		
+		$.ajax({
+			async: true,
+			dataType: "html",
+			url: "MostAccessed.php",
+			success: function(data) {
+				$("#chart-container").html(data);
+			}
+		});
+	});
+    </script>
 </body>
 
 </html>
