@@ -6,10 +6,6 @@ define("LOG_PATH", "/var/log/apache2/access1.log");
 define("TMP_LOG_DIR_PATH", "/var/log/apache2/");
 define("DATA_PATH", "/var/log/apache2/access2.log");
 
-//define("LOG_PATH", "/home/pi/logdata/access1.log");
-//define("TMP_LOG_DIR_PATH", "/home/pi/logdata/");
-//define("DATA_PATH", "/home/pi/logdata/access2.log");
-
 define("DB_PATH", "/var/www/db/UserData.db");
 
 class MyDB extends SQLite3
@@ -96,8 +92,11 @@ function process_line($line) {
 
 		//process content (category and filename)
 		$tokens = explode("/", $content_path);
-		$main_category = $tokens[3];
+		$tokens = array_slice($tokens, 3);
+		$main_category = $tokens[0];
 		$file_name = $tokens[count($tokens)-1];
+		array_pop($tokens);
+		$file_path = implode("/", $tokens);
 
 		//process user agent (os and browser)
 		$ua_arr = get_browser($user_agent, true);
@@ -110,6 +109,7 @@ function process_line($line) {
 		//String keys
 		return ["category"=>$main_category,
 			"file"=>$file_name,
+			"path"=>$file_path,
 			"browser"=>$browser,
 			"device"=>$device_type,
 			"os"=>$os];
@@ -118,6 +118,7 @@ function process_line($line) {
 		/*
 		return [$main_category,
 			$file_name,
+			$file_path,
 			$browser,
 			$device_type,
 			$os];
@@ -155,9 +156,10 @@ if (!ENFORCE_MIN_SIZE || (filesize(LOG_PATH) > PARSE_MIN_SIZE)) {
 		$db->exec("BEGIN;");
 
 		foreach($data as $entry) {
-			$statement = $db->prepare("INSERT INTO UserLogInfo (main_category, file_name, browser, device_type, os) VALUES (:category, :file, :browser, :device, :os)");
+			$statement = $db->prepare("INSERT INTO UserLogInfo (main_category, file_name, file_path, browser, device_type, os) VALUES (:category, :file, :path, :browser, :device, :os)");
 			$statement->bindValue(":category", $entry["category"]);
 			$statement->bindValue(":file", $entry["file"]);
+			$statement->bindValue(":path", $entry["path"]);
 			$statement->bindValue(":browser", $entry["browser"]);
 			$statement->bindValue(":device", $entry["device"]);
 			$statement->bindValue(":os", $entry["os"]);
