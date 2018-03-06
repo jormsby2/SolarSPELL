@@ -74,8 +74,8 @@
             </form>
             <br />
             <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
-                <button id="category-btn" class="btn btn-secondary btn-success">Category Usage</button>
-                <button id="fileaccess-btn" class="btn btn-secondary btn-success">Most Accessed</button>
+                <button id="fileaccess-btn" type="button" class="btn btn-success">Most Accessed</button>
+		<button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
 		<!--<a href="AccessByCategory.php" class="btn btn-secondary btn-success">Category Usage</a>-->
 		<!--<a href="MostAccessed.php" class="btn btn-secondary btn-success">Most Accessed</a>-->
 	    </div>
@@ -104,7 +104,7 @@
 			success: function(data) {
 				$("#chart-container").html(data);
 				$("#main-table").DataTable({
-					"scrollY": "250px",
+					"scrollY": "350px",
 					"scrollCollapse": true,
 					"paging": false,
 					"order": [[2, "desc"]]
@@ -124,7 +124,7 @@
 		});
   }
   
-  make_table();
+   //make_table();
   
 	/*window.addEventListener('click', function() {
 		var target = event.target;
@@ -134,11 +134,15 @@
 	document.getElementById("category-btn").addEventListener('click', function() {
 		//$("#chart-container").load("AccessByCategory.php");
 		make_pie_chart();
+		$("#category-btn").addClass('active');
+		$("#fileaccess-btn").removeClass('active');
 	});
 
 	document.getElementById("fileaccess-btn").addEventListener('click', function() {
 		//$("#chart-container").load("MostAccessed.php");
 		make_table();
+		$("#category-btn").removeClass('active');
+		$("#fileaccess-btn").addClass('active');
 	});
     </script>
 </body>
