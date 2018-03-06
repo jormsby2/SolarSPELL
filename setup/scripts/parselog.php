@@ -94,7 +94,7 @@ function process_line($line) {
 		$tokens = explode("/", $content_path);
 		$tokens = array_slice($tokens, 3);
 		$main_category = $tokens[0];
-		$file_name = $tokens[count($tokens)-1];
+		$file_name = trim($tokens[count($tokens)-1]);
 		array_pop($tokens);
 		$file_path = implode("/", $tokens);
 
