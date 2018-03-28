@@ -1,0 +1,36 @@
+Steps to get mysql on the SolarSPELL:
+1. Add the following lines to /etc/resolv.conf:
+   nameserver 8.8.8.8
+   nameserver 8.8.4.4
+
+2. Replace the file /etc/apt/sources.list on the pi with the one in this directory.  It includes a new link to a 
+working mirror site as of 2/24/18.
+
+3. Connect the SolarSPELL to the internet.  In order to do this, I had to disconnect my wifi and plug the SolarSPELL 
+directly into my modem using an ethernet cable.
+
+4. Run the following:
+   sudo apt-get update
+   sudo apt-get upgrade
+   sudo apt-get install mysql-server mysql-client
+
+5. Set up mysql root user password - I used raspberry for consistency.
+
+Once mysql is set up on the pi:
+1. Replace the my.cnf file in /etc/mysql directory with the one in this directory.  
+
+2. Place the setupdb.sql and testdbinfo.txt files in the /var/log/apache2 directory.  The setupdb.sql file is a small script to create a table and then pull data from the testdbinfo.txt file to create records.
+
+3. Run the following commands:
+   mysql -uroot -praspberry -e "create database UserData"
+   mysql -uroot -praspberry < /var/log/apache2/setupdb.sql
+   
+4. You can test to see if the database and table is properly created and populated by doing the following:
+   mysql -uroot -p UserData
+      enter password raspberry when prompted & you will get the mysql prompt
+   select * from UserInfoLog;
+      you should see 6 results
+
+5. To ensure downloadcsv.php has all proper dependecies. Run the following:
+	sudo apt-get install php-mysql
+	sudo service apache2 restart

@@ -1,0 +1,13 @@
+1) copy lite_php_browscap.ini to SolarSPELL unit (recommended to place in /home/pi/browscap/)
+*alternate/updated versions of browscap.ini can be downloaded from http://browscap.org/
+
+Note: browscap is used to parse user-agent string
+
+2) make a backup copy of the original php.ini in /etc/php5/cli/
+
+3) copy php.ini in this directory to /etc/php/cli/
+
+*alternatively you can add the following line to php.ini in /etc/php/cli/ below ";browscap = extra/browscap.ini" (line 1369):
+browscap = /home/pi/browscap/lite_php_browscap.ini
+
+(set browscap to the path where you placed lite_php_browscap.ini)
