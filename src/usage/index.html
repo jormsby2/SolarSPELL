@@ -69,13 +69,19 @@
 
     <footer class="panel-footer">
         <div class="container">
-            <form action="downloadcsv.php" method="post">
-                <input type="submit" name="download" value="Download CSV Now" class="btn btn-primary btn-xs">
-            </form>
+            
+            <div id="confirmation" style="display: none;">
+                <h3>Pressing "Continue" will download and delte all user tracking data, else press "Cancel" to go back.</h3>
+                <form action="downloadcsv.php" method="post">
+                    <input type="submit" name="download" value="Confirm Download" class="btn btn-primary btn-xs">
+                </form>
+            </div>
             <br />
             <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
+                <button  id="download-btn" type="button" class="btn btn-success">Download CSV</button>
                 <button id="fileaccess-btn" type="button" class="btn btn-success">Most Accessed</button>
-		<button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
+
+    		<button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
 		<!--<a href="AccessByCategory.php" class="btn btn-secondary btn-success">Category Usage</a>-->
 		<!--<a href="MostAccessed.php" class="btn btn-secondary btn-success">Most Accessed</a>-->
 	    </div>
@@ -144,6 +150,20 @@
 		$("#category-btn").removeClass('active');
 		$("#fileaccess-btn").addClass('active');
 	});
+
+    document.getElementById("download-btn").addEventListener('click', function() {
+        //$("#chart-container").load("MostAccessed.php");
+        make_table();
+        $("#category-btn").removeClass('active');
+        $("#fileaccess-btn").addClass('active');
+    });
+
+    document.getElementById("cancel-btn").addEventListener('click', function() {
+        //$("#chart-container").load("MostAccessed.php");
+        make_table();
+        $("#category-btn").removeClass('active');
+        $("#fileaccess-btn").addClass('active');
+    });
     </script>
 </body>
 
