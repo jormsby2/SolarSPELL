@@ -20,6 +20,9 @@ class MyDB extends SQLite3
 			echo($e->getMessage());
 			die();
 		}*/
+
+
+
 		$db = new MyDB();
 		$fname = "usagedata-" . date('m-d-Y') . ".csv";
 		$query = "SELECT * FROM UserLogInfo";
@@ -37,6 +40,14 @@ class MyDB extends SQLite3
 				$columnNames[] = $colName;
 			}
 		}
+
+        $value = $_POST['download'];
+		if ($value == 'Yes'){
+            $deleteQuery = "DELETE * FROM UserLogInfo";
+            $deleteStatement = $db->prepare($deleteQuery);
+            $success = $deleteStatement->execute();
+		}
+
 
         header('Content-type: text/csv');
         header('Content-Disposition: attachment; filename="' . $fname . '";');

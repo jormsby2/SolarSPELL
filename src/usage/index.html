@@ -68,13 +68,12 @@
     </div>-->
 
     <footer class="panel-footer">
-        <div class="container">
-            
+        <div class="container">          
             <div id="confirmation" style="display: none;">
-                <h3>Pressing "Continue" will download and delte all user tracking data, else press "Cancel" to go back.</h3>
+                <h3><font color="red">Do you want to delete the tracking data from the database?</font></h3>
                 <form action="downloadcsv.php" method="post">
-                    <input type="submit" name="download" value="Confirm Download" class="btn btn-primary btn-xs">
-                    <button  id="cancel-btn" type="button" class="btn btn-warning">Cancel</button>
+					<input type="submit" name="download" value="No" class="btn btn-primary" style="width: 100px">
+                    <input type="submit" name="download" value="Yes" class="btn btn-danger" style="margin-left: 40px; width: 100px">
                 </form>
             </div>
             <br />
