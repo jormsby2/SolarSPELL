@@ -1,17 +1,13 @@
 <?php
 /*
-* This page formats the log data into a formatted table to show most accessed files. I am currently using dummy data
-* until we figure out the database and logging.
+* This page formats the log data into a formatted table to show most accessed files. 
 */
 
-//Below is an example of what getting the data will look like once we have the database and logging figured out
-//$conn = mysqli_connect(connection to my sql db);
 define("DB_PATH", "/var/www/db/UserData.db");
 $query = "SELECT file_name, main_category, count(*) as Number
     FROM UserLogInfo
     GROUP BY file_name
     ORDER BY count(*) DESC";
-//$result = mysqli_query($conn, $query);
 
 class MyDB extends SQLite3
 {
@@ -52,15 +48,6 @@ function build_table($tableArray){
     $html .= '</table>';
     return $html;
 }
-
-// below is dummy data that SHOULD be coming from $result instead. Once we have the database connection string worked out
-// we can create the array from the database result
-/*$tableArray = array(
-    array('File'=>'Maya.svg', 'Category'=>'Math', 'Times Accessed'=>'5'),
-    array('File'=>'Fishing_down_the_food_web.png', 'Category'=>'Science', 'Times Accessed'=>'2'),
-    array('File'=>'Inscription_displaying_apices_(from_the_shrine_of_the_Augustales_at_Herculaneum).jpg', 'Category'=>'Language Arts', 'Times Accessed'=>'1')
-);
-*/
 
 $tableArray = [];
 

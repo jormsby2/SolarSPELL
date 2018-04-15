@@ -1,15 +1,11 @@
 <?php
 /*
- * This page formats the log data into a pi chart to show user access by category. I am currently using dummy data
- * until we figure out the database and logging.
+ * This page formats the log data into a pi chart to show user access by category. 
 */
-//Below is an example of what getting the data will look like once we have the database and logging figured out
-//$conn = mysqli_connect(connection to my sql db);
+
 define("DB_PATH", "/var/www/db/UserData.db");
 $query = "SELECT main_category, count(*) as number FROM UserLogInfo GROUP BY main_category";
-//$result = mysqli_query($conn, $query);
 
-// dummy data to work on this task while we figure out our logging issues
 class MyDB extends SQLite3
 {
 	function __construct() {

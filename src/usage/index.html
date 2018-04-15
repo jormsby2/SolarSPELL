@@ -43,37 +43,15 @@
         <h4>Please review the usage data below and download CSV usage file.</h4>
     </div>
 
-    <!--<div class="container">
-
-        <div class="row">
-            <div class="col-xs-6 col-lg-4">
-                <h3>ENVIRONMENT</h3>
-            </div>
-            <div class="col-xs-6 col-lg-4">
-                <h3>HEALTH AND SAFETY</h3>
-            </div>
-            <div class="col-xs-6 col-lg-4">
-                <h3>LANGUAGE ARTS</h3>
-            </div>
-            <div class="col-xs-6 col-lg-4">
-                <h3>LOCAL TOPICS</h3>
-            </div>
-            <div class="col-xs-6 col-lg-4">
-                <h3>MATH</h3>
-            </div>
-            <div class="col-xs-6 col-lg-4">
-                <h3>SCIENCE</h3>
-            </div>
-        </div>
-    </div>-->
-
     <footer class="panel-footer">
         <div class="container">          
             <div id="confirmation" style="display: none;">
                 <h3><font color="red">Do you want to delete the tracking data from the database?</font></h3>
-                <form action="downloadcsv.php" method="post">
-					<input type="submit" name="download" value="No" class="btn btn-primary" style="width: 100px">
-                    <input type="submit" name="download" value="Yes" class="btn btn-danger" style="margin-left: 40px; width: 100px">
+                <form action="downloadcsv-keep.php" method="post">
+					<input type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
+                </form>
+                <form action="downloadcsv-delete.php" method="post">
+                    <input type="submit" name="delete" value="Yes" class="btn btn-danger" style="margin-left: 40px; width: 100px">
                 </form>
             </div>
             <br />
@@ -82,8 +60,7 @@
                 <button id="fileaccess-btn" type="button" class="btn btn-success">Most Accessed</button>
 
     		<button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
-		<!--<a href="AccessByCategory.php" class="btn btn-secondary btn-success">Category Usage</a>-->
-		<!--<a href="MostAccessed.php" class="btn btn-secondary btn-success">Most Accessed</a>-->
+		
 	    </div>
 	    <br />
 	    <div id="chart-container" style="background-color: #fff;">
@@ -129,23 +106,14 @@
 			}
 		});
   }
-  
-   //make_table();
-  
-	/*window.addEventListener('click', function() {
-		var target = event.target;
-		if (target === ""){}
-	});*/	
 
 	document.getElementById("category-btn").addEventListener('click', function() {
-		//$("#chart-container").load("AccessByCategory.php");
 		make_pie_chart();
 		$("#category-btn").addClass('active');
 		$("#fileaccess-btn").removeClass('active');
 	});
 
 	document.getElementById("fileaccess-btn").addEventListener('click', function() {
-		//$("#chart-container").load("MostAccessed.php");
 		make_table();
 		$("#category-btn").removeClass('active');
 		$("#fileaccess-btn").addClass('active');
