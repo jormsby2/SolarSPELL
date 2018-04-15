@@ -46,13 +46,16 @@
     <footer class="panel-footer">
         <div class="container">          
             <div id="confirmation" style="display: none;">
-                <h3><font color="red">Do you want to delete the tracking data from the database?</font></h3>
-                <form action="downloadcsv-keep.php" method="post">
-					<input type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
-                </form>
-                <form action="downloadcsv-delete.php" method="post">
-                    <input type="submit" name="delete" value="Yes" class="btn btn-danger" style="margin-left: 40px; width: 100px">
-                </form>
+                <h3><font color="red">Clear tracking data after downloading?</font></h3>
+                
+                <div>
+                    <form action="downloadcsv-keep.php" method="post">
+                        <input type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
+                    </form><br>
+                    <form action="downloadcsv-delete.php" method="post">
+                        <input type="submit" name="delete" value="Yes" class="btn btn-primary" style="width: 100px">
+                    </form>
+                </div>
             </div>
             <br />
             <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
