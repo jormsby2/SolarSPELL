@@ -50,10 +50,10 @@
                 
                 <div>
                     <form action="downloadcsv-keep.php" method="post">
-                        <input type="submit" name="keep" value="No" class="confirm-download btn btn-primary" style="width: 100px">
+                        <input id="keep-data" type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
                     </form><br>
                     <form action="downloadcsv-delete.php" method="post">
-                        <input type="submit" name="delete" value="Yes" class="confirm-download btn btn-primary" style="width: 100px">
+                        <input id="delete-data" type="submit" name="delete" value="Yes" class="btn btn-primary" style="width: 100px">
                     </form>
                 </div>
             </div>
@@ -126,19 +126,13 @@
         $("#confirmation").css('display', 'block');
     });
 
-    document.getElementById("cancel-btn").addEventListener('click', function() {
+    document.getElementById("keep-data").addEventListener('click', function() {
         $("#confirmation").css('display', 'none');
     });
 
-    var classname = document.getElementsByClassName("confirm-download");
-
-    var hideConfirmation = function() {
+    document.getElementById("delete-data").addEventListener('click', function() {
         $("#confirmation").css('display', 'none');
-    };
-
-    for (var i = 0; i < classname.length; i++) {
-        classname[i].addEventListener('click', hideConfirmation, false);
-    }
+    });
     </script>
 </body>
 
