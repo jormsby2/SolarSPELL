@@ -26,6 +26,7 @@ class MyDB extends SQLite3
 			}
             $deleteStatement = "delete from UserLogInfo";
             $db->exec($deleteStatement);
+            $db->exec("vacuum");
 		}
 
         header('Content-type: text/csv');
