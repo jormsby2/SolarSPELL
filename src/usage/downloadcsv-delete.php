@@ -26,7 +26,9 @@ class MyDB extends SQLite3
 			}
             $deleteStatement = "delete from UserLogInfo";
             $db->exec($deleteStatement);
-            $db->exec("vacuum");
+	    unlink(DB_PATH);
+	    $newDB = new MyDB();
+	    $newDB->exec('create table UserLogInfo (main_category VARCHAR(120), file_name VARCHAR(120), file_path VARCHAR(120), browser VARCHAR(120), device_type VARCHAR(120), os VARCHAR(120))'); 
 		}
 
         header('Content-type: text/csv');
