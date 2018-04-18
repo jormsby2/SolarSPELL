@@ -1,6 +1,6 @@
 <?php
 /*
- * This page formats the log data into a pi chart to show user access by category. 
+ * This page formats the log data into a pi chart to show user access by category.
 */
 
 define("DB_PATH", "/var/www/db/UserData.db");
@@ -70,14 +70,24 @@ $db = new MyDB();
 
 		var options = {};
 		var ctx = document.getElementById(elem_id).getContext('2d');
-		var chart= new Chart(ctx, {
+		var chart = new Chart(ctx, {
 			type: 'pie',
 			data: data,
 			options: options
 		});
 	}
 
-	drawChart('piechart', getData());
+  var chartData = getData();
+
+  if (chartData.length === 0) {
+    var pieChartContainer = document.getElementById('piechart-container');
+
+    pieChartContainer.style.display = 'flex';
+    pieChartContainer.style.justifyContent = 'center';
+    pieChartContainer.innerHTML = '<div style="font-size: 20px;">No Data</div>';
+  } else {
+    drawChart('piechart', chartData);
+  }
 </script>
 </body>
 </html>
