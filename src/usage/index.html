@@ -111,6 +111,9 @@
         success: function(data) {
           $("#chart-container").html(data);
           pieChartLoaded = true;
+        },
+        error: function() {
+          $("#chart-container").html('Error loading data');
         }
       });
     }
