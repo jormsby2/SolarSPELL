@@ -83,6 +83,8 @@
 
     <script src="jquery.dataTables.min.js"></script>
     <script type="text/javascript">
+    var pieChartLoaded = false;
+
     function make_table() {
       $('#main-table').DataTable({
         ajax: 'MostAccessed.php',
@@ -107,6 +109,7 @@
         url: "AccessByCategory.php",
         success: function(data) {
           $("#chart-container").html(data);
+          pieChartLoaded = true;
         }
       });
     }
@@ -114,7 +117,10 @@
     make_table();
 
     document.getElementById("category-btn").addEventListener('click', function() {
-      make_pie_chart();
+      if (!pieChartLoaded) {
+        make_pie_chart();
+      }
+
       $("#category-btn").addClass('active');
       $("#fileaccess-btn").removeClass('active');
       $("#table-container").hide();
