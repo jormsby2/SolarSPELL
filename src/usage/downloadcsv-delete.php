@@ -31,8 +31,16 @@ class MyDB extends SQLite3
         foreach($firstRow as $colName => $val){
           $columnNames[] = $colName;
         }
-              $deleteStatement = "delete from UserLogInfo";
-              $db->exec($deleteStatement);
+        $file = fopen('php://output', 'w');
+        fputcsv($file, $columnNames);
+        fputcsv($file, $firstRow);
+
+        while($row = $result->fetchArray(SQLITE3_ASSOC)) {
+          fputcsv($file, $row);
+        }
+        fclose($file);
+        $deleteStatement = "delete from UserLogInfo";
+        $db->exec($deleteStatement);
         unlink(DB_PATH);
         $newDB = new MyDB();
         $newDB->exec('create table UserLogInfo (main_category VARCHAR(120), file_name VARCHAR(120), file_path VARCHAR(120), browser VARCHAR(120), device_type VARCHAR(120), os VARCHAR(120))');
@@ -42,14 +50,6 @@ class MyDB extends SQLite3
       header('Content-Disposition: attachment; filename="' . $fname . '";');
       header('Pragma: no-cache');
       header('Expires: 0');
-      $file = fopen('php://output', 'w');
-      fputcsv($file, $columnNames);
-      fputcsv($file, $firstRow);
-
-      while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        fputcsv($file, $row);
-      }
-      fclose($file);
 
       exit();
     }
