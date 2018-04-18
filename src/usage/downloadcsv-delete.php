@@ -26,7 +26,6 @@ class MyDB extends SQLite3
       $columnNames = array();
       $firstRow = [];
       if(!empty($result)){
-
         $firstRow = $result->fetchArray(SQLITE3_ASSOC);
         foreach($firstRow as $colName => $val){
           $columnNames[] = $colName;
