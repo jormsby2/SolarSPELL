@@ -51,9 +51,11 @@
                 <div>
                     <form action="downloadcsv-keep.php" method="post">
                         <input id="keep-data" type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
+                        <input id="user-date1" type="hidden" name="userdate">
                     </form><br>
                     <form action="downloadcsv-delete.php" method="post">
                         <input id="delete-data" type="submit" name="delete" value="Yes" class="btn btn-primary" style="width: 100px">
+                        <input id="user-date2" type="hidden" name="userdate">
                     </form>
                 </div>
             </div>
@@ -85,6 +87,15 @@
     <script src="jquery.dataTables.min.js"></script>
     <script type="text/javascript">
     var pieChartLoaded = false;
+    var userDate = new Date();
+    var month = userDate.getMonth() + 1;
+    var day = userDate.getDate();
+    var year = userDate.getFullYear();
+
+    if ((''+month).length === 1) { month = '0' + month; }
+    if ((''+day).length === 1) { day = '0' + day; }
+
+    var formattedUserDate = month + '-' + day + '-' + year;
 
     function make_table() {
       $('#main-table').DataTable({
@@ -123,6 +134,8 @@
       });
     }
 
+    document.getElementById('user-date1').value = formattedUserDate;
+    document.getElementById('user-date2').value = formattedUserDate;
     make_table();
 
     document.getElementById("category-btn").addEventListener('click', function() {
