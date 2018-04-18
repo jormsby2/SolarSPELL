@@ -88,9 +88,14 @@
 
     function make_table() {
       $('#main-table').DataTable({
-        ajax: 'MostAccessed.php',
+        ajax: {
+          url: 'MostAccessed.php',
+          dataSrc: 'data',
+          error: function() {
+            $("#table-container").html('Error loading data');
+          }
+        },
         deferRender: true,
-        dataSrc: 'data',
         columns: [
           { data: 'File' },
           { data: 'Category' },
