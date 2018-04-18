@@ -11,7 +11,7 @@ class MyDB extends SQLite3
     if (isset($_POST['keep'])){
       $db = new MyDB();
 
-      if (isset($_POST['userdate'])) {
+      if (isset($_POST['userdate']) && $_POST['userdate'] != "") {
         $currdate = $_POST['userdate'];
       } else {
         $currdate = date('m-d-Y');
