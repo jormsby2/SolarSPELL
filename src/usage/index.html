@@ -22,7 +22,7 @@
     <link href="jquery.dataTables.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/starter-template.css" rel="stylesheet">    
+    <link href="../css/starter-template.css" rel="stylesheet">
 
     <script src="../js/ie-emulation-modes-warning.js"></script>
 </head>
@@ -44,10 +44,10 @@
     </div>
 
     <footer class="panel-footer">
-        <div class="container">          
+        <div class="container">
             <div id="confirmation" style="display: none;">
                 <h3>Clear tracking data after downloading?</h3>
-                
+
                 <div>
                     <form action="downloadcsv-keep.php" method="post">
                         <input id="keep-data" type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
@@ -60,14 +60,15 @@
             <br />
             <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
                 <button  id="download-btn" type="button" class="btn btn-success">Download CSV</button>
-                <button id="fileaccess-btn" type="button" class="btn btn-success">Most Accessed</button>
-
-    		<button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
-		
-	    </div>
-	    <br />
-	    <div id="chart-container" style="background-color: #fff;">
-	    </div>
+                <button id="fileaccess-btn" type="button" class="btn btn-success active">Most Accessed</button>
+                <button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
+            </div>
+            <br />
+            <div id="table-container" style="background-color: #ffffff;">
+              <table id="main-table" class="stripe hover row-border" spacing="0" width="100%"></table>
+            </div>
+            <div id="chart-container" style="background-color: #ffffff;">
+            </div>
         </div>
     </footer>
 
@@ -82,45 +83,50 @@
 
     <script src="jquery.dataTables.min.js"></script>
     <script type="text/javascript">
-  function make_table() {
-    $.ajax({
-			async: true,
-			dataType: "html",
-			url: "MostAccessed.php",
-			success: function(data) {
-				$("#chart-container").html(data);
-				$("#main-table").DataTable({
-					"scrollY": "350px",
-					"scrollCollapse": true,
-					"paging": false,
-					"order": [[2, "desc"]]
-				});
-			}
-		});
-  }
-  
-  function make_pie_chart() {
-		$.ajax({
-			async: true,
-			dataType: "html",
-			url: "AccessByCategory.php",
-			success: function(data) {
-				$("#chart-container").html(data);
-			}
-		});
-  }
+    function make_table() {
+      $('#main-table').DataTable({
+        ajax: 'MostAccessed.php',
+        deferRender: true,
+        dataSrc: 'data',
+        columns: [
+          { data: 'File' },
+          { data: 'Category' },
+          { data: 'Times Accessed' }
+        ],
+        scrollY: "350px",
+        scrollCollapse: true,
+        paging: false,
+        order: [[2, "desc"]]
+      });
+    }
 
-	document.getElementById("category-btn").addEventListener('click', function() {
-		make_pie_chart();
-		$("#category-btn").addClass('active');
-		$("#fileaccess-btn").removeClass('active');
-	});
+    function make_pie_chart() {
+      $.ajax({
+        async: true,
+        dataType: "html",
+        url: "AccessByCategory.php",
+        success: function(data) {
+          $("#chart-container").html(data);
+        }
+      });
+    }
 
-	document.getElementById("fileaccess-btn").addEventListener('click', function() {
-		make_table();
-		$("#category-btn").removeClass('active');
-		$("#fileaccess-btn").addClass('active');
-	});
+    make_table();
+
+    document.getElementById("category-btn").addEventListener('click', function() {
+      make_pie_chart();
+      $("#category-btn").addClass('active');
+      $("#fileaccess-btn").removeClass('active');
+      $("#table-container").hide();
+      $("#chart-container").show();
+    });
+
+    document.getElementById("fileaccess-btn").addEventListener('click', function() {
+      $("#category-btn").removeClass('active');
+      $("#fileaccess-btn").addClass('active');
+      $("#chart-container").hide();
+      $("#table-container").show();
+    });
 
     document.getElementById("download-btn").addEventListener('click', function() {
         $("#confirmation").css('display', 'block');

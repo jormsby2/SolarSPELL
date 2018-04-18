@@ -1,6 +1,6 @@
 <?php
 /*
-* This page formats the log data into a formatted table to show most accessed files. 
+* This page formats the log data into a formatted table to show most accessed files.
 */
 
 define("DB_PATH", "/var/www/db/UserData.db");
@@ -15,9 +15,6 @@ class MyDB extends SQLite3
 		$this->open(DB_PATH);
 	}
 }
-
-$db = new MyDB();
-$result = $db->query($query);
 
 function build_table($tableArray){
     // start table, use bootstrap table css and include grid lines
@@ -49,15 +46,33 @@ function build_table($tableArray){
     return $html;
 }
 
-$tableArray = [];
+//$tableArray = [];
 
-while($row = $result->fetchArray(SQLITE3_ASSOC)) {
-	array_push($tableArray, ['File'=>$row["file_name"], 'Category'=>$row["main_category"], 'Times Accessed'=>$row["Number"]]);
+//while($row = $result->fetchArray(SQLITE3_ASSOC)) {
+//	array_push($tableArray, ['File'=>$row["file_name"], 'Category'=>$row["main_category"], 'Times Accessed'=>$row["Number"]]);
+//}
+
+function get_table_data() {
+	$query = "SELECT file_name, main_category, count(*) as Number
+	FROM UserLogInfo
+	GROUP BY file_name
+	ORDER BY count(*) DESC";
+
+	$db = new MyDB();
+	$result = $db->query($query);
+	$jsondata = '{"data": [';
+
+	while($row = $result->fetchArray(SQLITE3_ASSOC)) {
+		$jsondata .= '{"File": "' . $row["file_name"] . '",' . '"Category": "' . $row["main_category"] . '",' . '"Times Accessed": "' . $row["Number"] . '"},';
+	}
+
+	$jsondata = rtrim($jsondata, ",");
+	$jsondata .=  ']}';
+
+	return $jsondata;
 }
 ?>
 
-    <script src="../js/bootstrap.js"></script>
-
 <?php
-echo build_table($tableArray);
+echo (get_table_data());
 ?>
