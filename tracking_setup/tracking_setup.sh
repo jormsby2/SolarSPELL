@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 # variables
 home_dir=/home/pi
 browscap_dir_name=browscap
