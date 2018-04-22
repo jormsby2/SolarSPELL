@@ -7,37 +7,30 @@ class MyDB extends SQLite3
 		$this->open(DB_PATH);
 	}
 }
-
-    if (isset($_POST['download'])){
-		/*$connectionstring = 'mysql:host=localhost;dbname=UserData';
-		$user = 'root';
-		$passwd = 'raspberry';
-
-		try{
-			$dbc = new PDO($connectionstring, $user, $passwd);
-		}catch(PDOException $e){
-			// print error message.
-			echo($e->getMessage());
-			die();
-		}*/
+if (isset($_POST['delete'])){
 		$db = new MyDB();
-		$fname = "usagedata-" . date('m-d-Y') . ".csv";
+        if (isset($_POST['userdate']) && $_POST['userdate'] != "") {
+            $currdate = $_POST['userdate'];
+          } else {
+            $currdate = date('m-d-Y');
+          }
+
+      $fname = "usagedata-" . $currdate . ".csv";
 		$query = "SELECT * FROM UserLogInfo";
-		//$statement = $dbc->prepare($query);
+		
 		$statement = $db->prepare($query);
-		//$statement->execute();
-		//$result = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
 		$result = $statement->execute();
 		$columnNames = array();
 		$firstRow = [];
 		if(!empty($result)){
-			//$firstRow = $result[0];
+			
 			$firstRow = $result->fetchArray(SQLITE3_ASSOC);
 			foreach($firstRow as $colName => $val){
 				$columnNames[] = $colName;
 			}
+            
 		}
-
         header('Content-type: text/csv');
         header('Content-Disposition: attachment; filename="' . $fname . '";');
         header('Pragma: no-cache');
@@ -45,14 +38,17 @@ class MyDB extends SQLite3
         $file = fopen('php://output', 'w');
 		fputcsv($file, $columnNames);
 		fputcsv($file, $firstRow);
-		/*foreach($result as $row){
-			fputcsv($file, $row);
-		}*/
+		
 		while($row = $result->fetchArray(SQLITE3_ASSOC)) {
 			fputcsv($file, $row);
 		}
 		fclose($file);
-
+        
+        $deleteStatement = "delete from UserLogInfo";
+            $db->exec($deleteStatement);
+	    unlink(DB_PATH);
+	    $newDB = new MyDB();
+	    $newDB->exec('create table UserLogInfo (main_category VARCHAR(120), file_name VARCHAR(120), file_path VARCHAR(120), browser VARCHAR(120), device_type VARCHAR(120), os VARCHAR(120))'); 
         exit();
     }
 ?>

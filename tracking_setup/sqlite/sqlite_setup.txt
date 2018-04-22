@@ -9,9 +9,4 @@ sudo mkdir /var/www/db
 sudo mkdir /var/www/scripts
 sudo cp /full/path/to/setupdb.php /var/www/scripts
 sudo cp /full/path/to/parselog.php /var/www/scripts
-
-sudo php setupdb.php
-
-*must be in same directory that setupdb.php is located
-
-
+sudo php /var/www/scripts/setupdb.php

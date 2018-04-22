@@ -1,0 +1,10 @@
+*use full paths to files in php script
+
+use the following command (sudo is required to give crontab permission to modify files in log directory):
+sudo crontab -e
+
+append this line to the end of the crontab file (after all the comments) to run the parsing script every 59 minutes, then save and exit:
+*/59 * * * * php /var/www/scripts/parselog.php
+
+optionally append this line instead of above line to have system copy and delete log entries and then run parsing script:
+*/59 * * * * cp /var/log/apache2/access1.log /var/log/apache2/access1.log.bak ; truncate -s 0 /var/log/apache2/access1.log ; php /var/www/scripts/parselog.php

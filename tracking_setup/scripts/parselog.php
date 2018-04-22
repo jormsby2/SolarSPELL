@@ -26,51 +26,15 @@ function clear_log($source_path, $dest_dir_path = NULL) {
 
 	//cannot remove file or apache logger will lose pointer to it
 	file_put_contents($source_path, "");
-	//$handle = fopen($source_path, "w");
-	//fclose($handle);
 
 	return $dest_path;
 }
 
 function remove_duplicates($source_path, $dest_path) {
-	/*
-	//entire file at once
-	$lines = array_unique(file($source_path));
-	file_put_contents($dest_path, implode($lines));
-	*/
-
-	/*
-	//line by line (large files)
-	$handle = fopen($source_path, "r");
-	if ($handle) {
-		$arr = [];
-
-		while(($line = fgets($handle)) !== false) {
-			array_push($arr, $line);
-		}
-
-		fclose($handle);
-		$lines = array_unique($arr);
-		$fp = fopen($dest_path, "w");
-
-		foreach ($lines as $line) {
-			fwrite($fp, $line);
-		}
-
-		fclose($fp);
-	}
-	*/
-
-	//linux command
-	/*
-	$output = shell_exec("sort -u " . $source_path);
-	file_put_contents($dest_path, $output);
-	*/
 
 	$lines = [];
 	exec("sort -u " . $source_path, $lines);
 	$file = fopen($dest_path, "w");
-	//file_put_contents($dest_path, implode("\n", $lines));
 
 	foreach ($lines as $line) {
 		fwrite($file, $line . "\n");
@@ -103,8 +67,6 @@ function process_line($line) {
 		$browser = $ua_arr['parent'];
 		$device_type = $ua_arr['device_type'];
 		$os = $ua_arr['platform'];
-		//$is_mobile_device = $ua_arr['ismobiledevice'];
-		//$is_tablet = $ua_arr['istablet'];
 
 		//String keys
 		return ["category"=>$main_category,
@@ -114,15 +76,6 @@ function process_line($line) {
 			"device"=>$device_type,
 			"os"=>$os];
 
-		//No string keys
-		/*
-		return [$main_category,
-			$file_name,
-			$file_path,
-			$browser,
-			$device_type,
-			$os];
-		*/
 	}
 }
 
@@ -150,7 +103,6 @@ if (!ENFORCE_MIN_SIZE || (filesize(LOG_PATH) > PARSE_MIN_SIZE)) {
 	$data = get_data($data_path);
 
 	if (!empty($data)) {
-		//print_r($data);
 		$db = new MyDB();
 
 		$db->exec("BEGIN;");
@@ -164,7 +116,6 @@ if (!ENFORCE_MIN_SIZE || (filesize(LOG_PATH) > PARSE_MIN_SIZE)) {
 			$statement->bindValue(":device", $entry["device"]);
 			$statement->bindValue(":os", $entry["os"]);
 			$result = $statement->execute()->finalize();
-			//$result = $statement->execute();
 		}
 
 		$db->exec("COMMIT;");
