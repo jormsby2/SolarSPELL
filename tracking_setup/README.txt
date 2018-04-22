@@ -30,6 +30,7 @@ COMMANDS FOR MANUAL SETUP - Follow if you do not use the shell script for automa
 
 **Usage page files**
 copy files from usage folder to /var/www/html/usage (make this directory if it doesn't exist using mkdir command)
+copy files from images folder to /var/www/html/images (make this directory if it doesn't exist using mkdir command)
 
 
 **Apache**

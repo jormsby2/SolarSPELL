@@ -12,7 +12,9 @@ mkdir $home_dir/$backup_dir_name$curr_date
 
 # Usage page files
 mkdir /var/www/html/usage
+mkdir /var/www/images
 cp ./usage/* /var/www/html/usage
+cp ./images/* /var/www/html/images
 
 
 # Apache
