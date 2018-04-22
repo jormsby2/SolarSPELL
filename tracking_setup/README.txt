@@ -36,18 +36,18 @@ copy files from images folder to /var/www/html/images (make this directory if it
 **Apache**
 1. Make a backup copy of the original 000-default.conf in /etc/apache2/sites-available/
 
-2. Copy 000-default.conf in this directory to /etc/apache2/sites-available/
+2. Copy 000-default.conf in apacheconfig directory to /etc/apache2/sites-available/
 
 
 **Browscap**
-1. Copy lite_php_browscap.ini to /home/pi/browscap/ (make this directory if it doesn't exist using mkdir command)
+1. Copy lite_php_browscap.ini from browscap directory to /home/pi/browscap/ (make this directory if it doesn't exist using mkdir command)
 *alternate/updated versions of browscap.ini can be downloaded from http://browscap.org/
 
 Note: browscap is used to parse user-agent string
 
 2. Make a backup copy of the original php.ini in /etc/php5/cli/
 
-3. Copy php.ini in this directory to /etc/php/cli/
+3. Copy php.ini in browscap directory to /etc/php/cli/
 
 
 **SQLite / DB**
