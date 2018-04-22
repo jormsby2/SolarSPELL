@@ -1,3 +1,7 @@
+**If you are on Windows, before cloning, make sure to set autocrlf to false by running the following command: git config core.autocrlf false  
+**if you do not set this, you should run the following command in ssh on the pi after transferring the setup.sh: 
+tr -d '\r' < setup.sh > setup-unix.sh  then run bash setup-unix.sh instead of bash setup.sh
+
 FOLLOW THE INSTRUCTIONS BELOW IN ORDER
 
 1. Follow instructions in setup.txt first, if you have not already done so
@@ -12,8 +16,7 @@ sudo bash
 ======================================================================================================================================
 
 COMMANDS FOR AUTOMATIC SETUP:
-  tr -d '\r' < tracking_setup.sh > newscript.sh
-  bash newscript.sh
+  bash setup.sh
 
 NOTE: You must perform this step manually:
   **Crontab / Automate Parsing**
