@@ -87,6 +87,8 @@ function get_data($source_path) {
 
 		while(($line = fgets($handle)) !== false) {
 			if (trim($line) !== "") {
+				$line = preg_replace("/(\\\\)([a-z,0-9])([a-z,0-9])/i","",$line);
+				echo $line;
 				array_push($data, process_line($line));
 			}
 		}
