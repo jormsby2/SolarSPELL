@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!-- is this the front end? -->
 <html lang="en">
 
 <head>
@@ -14,160 +14,274 @@
     <title>SPELL</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <link href="jquery.dataTables.min.css" rel="stylesheet">
+    <link href="/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/starter-template.css" rel="stylesheet">
+    <link href="/css/starter-template.css" rel="stylesheet">
 
-    <script src="../js/ie-emulation-modes-warning.js"></script>
+    <script src="/js/ie-emulation-modes-warning.js"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../index.html" style="padding:5px 5px; margin-left:0px">
-                    <img alt="Brand" href="../index.html" src="../img/SPELLWebsite-header_revised.png" style="max-height:40px">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                 </button>  
+  
+            <a class="navbar-brand" href="/index.html" style="padding:5px 5px; margin-left:0px">
+                    <img alt="Brand" href="/index.html" src="/img/SPELLWebsite-header_revised.png" style="max-height:40px">
                 </a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Creative Arts<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Creative%20Arts/East%20Africa%20Arts%20and%20Culture/">East Africa Arts and Culture</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Creative%20Arts/Teaching%20Resources%20and%20Classroom%20Activities/">Teaching Resources and Classroom Activities</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Environment<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Environment/Agriculture/">Agriculture</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Environment/Climate%20Change/">Climate Change</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Environment/Energy/">Energy</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Environment/Geography/">Geography</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Environment/Natural%20Habitat/">Natural Habitat</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Environment/Teaching%20Resources%20and%20Classroom%20Activities/">Teaching Resources and Classroom Activities</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Environment/Waste%20Facts/">Waste Facts</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Health and Safety<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">       
+                            <li><a href="/content/Health%20and%20Safety/Country%20Specific%20Resources/">Country Specific Resources</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/East%20Africa%20Health%20Organized%20By%20Language/">East Africa Health Organized By Language</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/General%20and%20Other%20Health%20Topics/">General and Other Health Topics</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/Infectious%20and%20Communicable%20Diseases/">Infectious and Communicable Diseases</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/Non-Communicable%20Diseases/">Non-Communicable Diseases</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/Nutrition%20and%20Physical%20Activity/">Nutrition and Physical Activity</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/Safety/">Safety</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/SolarSPELL%20Health/">SolarSPELL Health</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/Teaching%20Resources%20and%20Classroom%20Activities/">Teaching Resources and Classroom Activities</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Health%20and%20Safety/Water,%20Sanitation,%20and%20Hygiene/">Water, Sanitation, and Hygiene</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language Arts<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Language%20Arts/ESL%20Adaptable%20Lesson%20Plans/">ESL Adaptable Lesson Plans</a></li>                          
+                            <li class="divider"></li>
+                            <li><a href="/content/Language%20Arts/Peace%20Corps%20Resources/">Peace Corps Resources</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Language%20Arts/Phonics/">Phonics</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Language%20Arts/Reading%20Resources/">Reading Resources</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Language%20Arts/Teaching%20Resources%20and%20Classroom%20Activities/">Teaching Resources and Classroom Activities</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Language%20Arts/UCLA%20K-12%20Gateway/">UCLA K-12 Gateway</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Language%20Arts/Voice%20of%20America%20%28VOA%29/">Voice of America (VOA)</a></li>                           
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Local Topics<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Local%20Topics/Africa/">Africa</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Local%20Topics/Comoros/">Comoros</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Local%20Topics/Democratic%20Republic%20of%20the%20Congo/">Democratic Republic of the Congo</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Local%20Topics/East%20Africa/">East Africa</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Local%20Topics/Rwanda/">Rwanda</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Local%20Topics/South%20Sudan/">South Sudan</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Math<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Math/Addition%20and%20Subtraction/">Addition and Subtraction</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Advanced/">Advanced</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Decimals/">Decimals</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Fractions/">Fractions</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Grades-Levels%20(All%20Inclusive)/">Grades-Levels (All Inclusive)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Multiplication%20and%20Division/">Multiplication and Division</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Negative%20Numbers%20and%20Absolute%20Values/">Negative Numbers and Absolute Values</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Teaching%20Resources%20and%20Classroom%20Activities/">Teaching Resources and Classroom Activities</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Math/Telling%20Time/">Telling Time</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Science<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Science/Earth%20and%20Space/">Earth and Space</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Grades-Levels%20(All%20Inclusive)/">Grades-Levels (All Inclusive)</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Human%20Body/">Human Body</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Life%20Science/">Life Science</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Physical%20Science/">Physical Science</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Renewable%20Energy/">Renewable Energy</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Teaching%20Resources%20and%20Classroom%20Activities/">Teaching Resources and Classroom Activities</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Science/Other%20Science/">Other Science</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reference Tools<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="/content/Reference%20Tools/Dictionaries/">Dictionaries</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Reference%20Tools/General-Life%20Skills-Teacher/">General/Life Skills/Teacher</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Reference%20Tools/Human%20Rights%20Documents/">Human Rights Documents</a></li> 
+                            <li class="divider"></li>
+                            <li><a href="/en-medline_plus/">Medical Encyclopedia</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Reference%20Tools/Peace%20Corps%20Resources/">Peace Corps Resources</a></li> 
+                            <li class="divider"></li> 
+                            <li><a href="/content/Reference%20Tools/Reading%20Resources/">Reading Resources</a></li>
+                            <li class="divider"></li>
+                            <li><a href="/content/Reference%20Tools/Sustainable%20Development%20Goals/">Sustainable Development Goals</a></li> 
+                            <li class="divider"></li> 
+                            <li><a href="/content/Reference%20Tools/Teaching%20Resources/">Teaching Resources</a></li> 
+                            <li class="divider"></li>
+                            <li><a href="/Wikipedia/">Wikipedia</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <div class="container">
-        <h2>Welcome Administrator!</h2>
-        <h4>Please review the usage data below and download CSV usage file.</h4>
-    </div>
-
-    <footer class="panel-footer">
-        <div class="container">
-            <div id="confirmation" style="display: none;">
-                <h3>Clear tracking data after downloading?</h3>
-
-                <div>
-                    <form action="downloadcsv-keep.php" method="post">
-                        <input id="keep-data" type="submit" name="keep" value="No" class="btn btn-primary" style="width: 100px">
-                        <input id="user-date1" type="hidden" name="userdate" value="">
-                    </form><br>
-                    <form action="downloadcsv-delete.php" method="post">
-                        <input id="delete-data" type="submit" name="delete" value="Yes" class="btn btn-primary" style="width: 100px">
-                        <input id="user-date2" type="hidden" name="userdate" value="">
-                    </form>
+        <!-- This should be replaced by a more suitable container -->
+        <div id="mycarousel" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="/img/east africa banner v3-01 w Text.png" alt="SPELL background" class="img-responsive">
+                    <div class="container"> <!-- Can we delete this? -->
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <br />
-            <div class="btn-toolbar" role="toolbar" aria-label="Basic example">
-                <button  id="download-btn" type="button" class="btn btn-success">Download CSV</button>
-                <button id="fileaccess-btn" type="button" class="btn btn-success active">Most Accessed</button>
-                <button id="category-btn" type="button" class="btn btn-success">Category Usage</button>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-lg-4">
+                <br /> <!-- Why? (Same for the ones below) -->
+                <a href="/content/Creative%20Arts/">
+                    <img src="/img/SPELL_Creative_Arts_Icon_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
             </div>
-            <br />
-            <div id="table-container" style="background-color: #ffffff;">
-              <table id="main-table" class="stripe hover row-border" spacing="0" width="100%"></table>
+            <div class="col-xs-12 col-lg-4">
+                <br /> <!-- Why? (Same for the ones below) -->
+                <a href="/content/Environment/">
+                    <img src="/img/SPELL_Environment_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
             </div>
-            <div id="chart-container" style="background-color: #ffffff; display: none;">
-              Loading...
+            <div class="col-xs-12 col-lg-4">
+                <br />
+                <a href="/content/Health%20and%20Safety/"> <!-- We should really rename the images to be simple/consistent -->
+                    <img src="/img/SPELL_HealthSafety_Icon_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
             </div>
+            <div class="col-xs-12 col-lg-4">
+                <br />
+                <a href="/content/Language%20Arts/">
+                    <img src="/img/SPELL_Langauge_Arts_Icon_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+                <br />
+                <a href="/content/Local%20Topics/">
+                    <img src="/img/SPELL_localtopics_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+                <br />
+                <a href="/content/Math/">
+                    <img src="/img/SPELL_Math_Icon_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+                <br />
+                <a href="/content/Science/">
+                    <img src="/img/SPELL_Science_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
+            </div>
+            <div class="col-xs-12 col-lg-4">
+                 <br />
+                 <a href="/en-medline_plus/">
+                    <img src="/img/SPELL_Encyclopedia_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
+               </div>
+            <div class="col-xs-12 col-lg-4">
+                <br />
+                    <a href="/Wikipedia/">
+                    <img src="/img/SPELL_Wikipedia_FINAL.png" class="center-block" style="max-height:140px">
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <br />
+    <footer class="panel-footer">
+        <div class="container">
+            <a href="aboutus.html" class="btn btn-primary btn-xs">About Us</a>
         </div>
     </footer>
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
 
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../js/ie10-viewport-bug-workaround.js"></script>
-
-    <script src="jquery.dataTables.min.js"></script>
-    <script type="text/javascript">
-    var pieChartLoaded = false;
-    var userDate = new Date();
-    var month = userDate.getMonth() + 1;
-    var day = userDate.getDate();
-    var year = userDate.getFullYear();
-
-    if ((''+month).length === 1) { month = '0' + month; }
-    if ((''+day).length === 1) { day = '0' + day; }
-
-    var formattedUserDate = month + '-' + day + '-' + year;
-
-    function make_table() {
-      $('#main-table').DataTable({
-        ajax: {
-          url: 'MostAccessed.php',
-          dataSrc: 'data',
-          error: function() {
-            $("#table-container").html('Error loading data');
-          }
-        },
-        deferRender: true,
-        columns: [
-          { data: 'File', title: 'File' },
-          { data: 'Category', title: 'Category' },
-          { data: 'Times Accessed', title: 'Times Accessed' }
-        ],
-        scrollY: "350px",
-        scrollCollapse: true,
-        paging: false,
-        order: [[2, "desc"]]
-      });
-    }
-
-    function make_pie_chart() {
-      $.ajax({
-        async: true,
-        dataType: "html",
-        url: "AccessByCategory.php",
-        success: function(data) {
-          $("#chart-container").html(data);
-          pieChartLoaded = true;
-        },
-        error: function() {
-          $("#chart-container").html('Error loading data');
-        }
-      });
-    }
-
-    document.getElementById('user-date1').value = formattedUserDate;
-    document.getElementById('user-date2').value = formattedUserDate;
-    make_table();
-
-    document.getElementById("category-btn").addEventListener('click', function() {
-      if (!pieChartLoaded) {
-        make_pie_chart();
-      }
-
-      $("#category-btn").addClass('active');
-      $("#fileaccess-btn").removeClass('active');
-      $("#table-container").hide();
-      $("#chart-container").show();
-    });
-
-    document.getElementById("fileaccess-btn").addEventListener('click', function() {
-      $("#category-btn").removeClass('active');
-      $("#fileaccess-btn").addClass('active');
-      $("#chart-container").hide();
-      $("#table-container").show();
-    });
-
-    document.getElementById("download-btn").addEventListener('click', function() {
-        $("#confirmation").css('display', 'block');
-    });
-
-    document.getElementById("keep-data").addEventListener('click', function() {
-        $("#confirmation").css('display', 'none');
-    });
-
-    document.getElementById("delete-data").addEventListener('click', function() {
-        $("#confirmation").css('display', 'none');
-    });
-    </script>
+    <script src="/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 
 </html>
