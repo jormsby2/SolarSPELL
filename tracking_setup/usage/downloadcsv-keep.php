@@ -1,5 +1,6 @@
 <?php
 define("DB_PATH", "/var/www/db/UserData.db");
+define("configJson", "/var/www/html/assets/config.json");
 
 class MyDB extends SQLite3
 {
@@ -17,7 +18,12 @@ class MyDB extends SQLite3
         $currdate = date('m-d-Y');
       }
 
-      $fname = "usagedata-" . $currdate . ".csv";
+      //get version info to append to filename
+      $rawJson = file_get_contents(configJson);
+      $jsonArray = json_decode($rawJson,true);
+      $version = $jsonArray["version"];
+
+      $fname = "usagedata-" . $currdate ."-". $version. ".csv";
       $query = "SELECT * FROM UserLogInfo";
 
       $statement = $db->prepare($query);
